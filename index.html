@@ -62,6 +62,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-桥接模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/22/桥接模式/" class="article-date">
+  <time datetime="2018-04-22T14:46:03.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/22/桥接模式/">桥接模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#include <iostream><br>/*桥接模式：<br>    把抽象和具体的方法实现分离开来，使他们可以独立的变化<br>    如：手机品牌和手机软件是两个概念，不同的手机可以有相同的软件<br>    不同的软件可以安装在相同的手机上。两者都具有很大的变动性并且耦合很大。<br>    如果单独以手机品牌或软件来继承拓展的话，变动非常大。<br>    所以把手机和软件分离开，各自继承拓展，要使用是连接上他们的关联。<br>    eg:要实现用AbstrustA或AbstructB实现TimeA或TimeBf方法<br>    把AbstructA和AbstructB…实现一个基类Abstruct，当要扩展时直接继承<br>    Abstruct类，方便快捷，而且不影响Time类<br>    同理，Time类也一样。</iostream></p>
+<p>*/</p>
+<p>using namespace std;<br> class TimeBasic{<br> public :<br>     TimeBasic(){<br>     cout&lt;&lt;”TimeBasic 构造”&lt;&lt;endl;<br>     }<br>     virtual void operatora()=0;<br> };<br> class TimeA :public TimeBasic{<br> public :<br>     TimeA(){<br>     cout&lt;&lt;”TimeA 构造”&lt;&lt;endl;<br>     }<br>     void operatora(){<br>       cout&lt;&lt;”operatora A  A!!”&lt;&lt;endl;<br>       }<br>};<br>class TimeB :public TimeBasic{<br> public :<br>     TimeB(){<br>     cout&lt;&lt;”TimeB 构造”&lt;&lt;endl;<br>     }<br>     void operatora(){<br>       cout&lt;&lt;”operatora B  B!!”&lt;&lt;endl;<br>       }<br>};<br>class AbstructBasic {<br>    protected:<br>        TimeBasic * TB;<br>    public :<br>        virtual void operatora(){<br>           TB-&gt;operatora();<br>        };<br>    };</p>
+<p> class AbstructA :public AbstructBasic{<br>   public:<br>       AbstructA(TimeBasic <em>t){<br>         TB=t;<br>         cout&lt;&lt;”AbstructA 构造”&lt;&lt;endl;<br>        }<br> };<br> class AbstructB :public AbstructBasic{<br>     public:<br>       AbstructB(TimeBasic </em>t){<br>            TB=t;<br>            cout &lt;&lt;”AbstructB 构造”&lt;&lt;endl;<br>       }</p>
+<p> };</p>
+<p>int main()<br>{<br>    //创建一个TimeA对象，指针ta指向该对象<br>    /<em><br>    创建一个AbstructB对象，并让AbstructBasci基类指针指向他<br>    创建AbstructB对象时，构造函数把ta赋值给TimeBasic指针TB，<br>    AB调用operatora方法，AbstructBasic的operatora方法又调用<br>    TB所指向的对象的operatora方法
+    </em>/<br>    TimeA <em>ta=new TimeA();<br>    AbstructBasic </em>AB=new AbstructB(ta);<br>    AB-&gt;operatora();<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/22/桥接模式/" data-id="cjgaxear90003zguit7lqis3o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-模板模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/20/模板模式/" class="article-date">
+  <time datetime="2018-04-20T14:19:42.000Z" itemprop="datePublished">2018-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/20/模板模式/">模板模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>模板模式<br>定义一个操作中的算法骨架，而将一些步骤延迟到子类中实现。模板方法使得子类可以再不改变一个算法的结构即可重新定义该算法的某些特定步骤。通过把不变的行为搬移到基类中，去除了子类的重复代码，提供了一个很好的代码复用解决方案。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/20/模板模式/" data-id="cjgaxear70002zguimz1lc8vx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ArrayList源码分析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/14/ArrayList源码分析/" class="article-date">
@@ -1087,7 +1167,7 @@ public void sort(Comparator&lt;? super E&gt; c) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/14/ArrayList源码分析/" data-id="cjfy6eaiu0002z4ui1xkmz1ur" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/14/ArrayList源码分析/" data-id="cjgaxeard0005zguigv5cfmki" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1566,7 +1646,7 @@ public void clear() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/06/HashMap源码部分分析/" data-id="cjfy6eaip0000z4ui7cf8uax2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/06/HashMap源码部分分析/" data-id="cjgaxearn0006zguijukx6ymq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1603,7 +1683,7 @@ public void clear() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/31/sfdsa/" data-id="cjfy6eaiu0001z4ui1ymtbpu5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/31/sfdsa/" data-id="cjgaxeaqw0000zguij69s2hy0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1640,7 +1720,7 @@ public void clear() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/31/又一次/" data-id="cjfy6eaiu0003z4uirciel8st" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/31/又一次/" data-id="cjgaxear40001zguiy22trciz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1685,7 +1765,7 @@ public void clear() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/31/hello-world/" data-id="cjfy6eaiu0004z4uix5h3zqmt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/31/hello-world/" data-id="cjgaxearb0004zguihy1bo816" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1726,6 +1806,14 @@ public void clear() {
       <ul>
         
           <li>
+            <a href="/2018/04/22/桥接模式/">桥接模式</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/20/模板模式/">模板模式</a>
+          </li>
+        
+          <li>
             <a href="/2018/04/14/ArrayList源码分析/">ArrayList源码分析</a>
           </li>
         
@@ -1735,14 +1823,6 @@ public void clear() {
         
           <li>
             <a href="/2018/03/31/sfdsa/">sfdsa</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/31/又一次/">又一次</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/31/hello-world/">Hello World</a>
           </li>
         
       </ul>

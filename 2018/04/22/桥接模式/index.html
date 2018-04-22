@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>桥接模式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#include /*桥接模式：    把抽象和具体的方法实现分离开来，使他们可以独立的变化    如：手机品牌和手机软件是两个概念，不同的手机可以有相同的软件    不同的软件可以安装在相同的手机上。两者都具有很大的变动性并且耦合很大。    如果单独以手机品牌或软件来继承拓展的话，变动非常大。    所以把手机和软件分离开，各自继承拓展，要使用是连接上他们的关联。    eg:要实现用Abst">
+<meta property="og:type" content="article">
+<meta property="og:title" content="桥接模式">
+<meta property="og:url" content="http://yoursite.com/2018/04/22/桥接模式/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#include /*桥接模式：    把抽象和具体的方法实现分离开来，使他们可以独立的变化    如：手机品牌和手机软件是两个概念，不同的手机可以有相同的软件    不同的软件可以安装在相同的手机上。两者都具有很大的变动性并且耦合很大。    如果单独以手机品牌或软件来继承拓展的话，变动非常大。    所以把手机和软件分离开，各自继承拓展，要使用是连接上他们的关联。    eg:要实现用Abst">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-22T14:46:16.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="桥接模式">
+<meta name="twitter:description" content="#include /*桥接模式：    把抽象和具体的方法实现分离开来，使他们可以独立的变化    如：手机品牌和手机软件是两个概念，不同的手机可以有相同的软件    不同的软件可以安装在相同的手机上。两者都具有很大的变动性并且耦合很大。    如果单独以手机品牌或软件来继承拓展的话，变动非常大。    所以把手机和软件分离开，各自继承拓展，要使用是连接上他们的关联。    eg:要实现用Abst">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-桥接模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/22/桥接模式/" class="article-date">
+  <time datetime="2018-04-22T14:46:03.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      桥接模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#include <iostream><br>/*桥接模式：<br>    把抽象和具体的方法实现分离开来，使他们可以独立的变化<br>    如：手机品牌和手机软件是两个概念，不同的手机可以有相同的软件<br>    不同的软件可以安装在相同的手机上。两者都具有很大的变动性并且耦合很大。<br>    如果单独以手机品牌或软件来继承拓展的话，变动非常大。<br>    所以把手机和软件分离开，各自继承拓展，要使用是连接上他们的关联。<br>    eg:要实现用AbstrustA或AbstructB实现TimeA或TimeBf方法<br>    把AbstructA和AbstructB…实现一个基类Abstruct，当要扩展时直接继承<br>    Abstruct类，方便快捷，而且不影响Time类<br>    同理，Time类也一样。</iostream></p>
+<p>*/</p>
+<p>using namespace std;<br> class TimeBasic{<br> public :<br>     TimeBasic(){<br>     cout&lt;&lt;”TimeBasic 构造”&lt;&lt;endl;<br>     }<br>     virtual void operatora()=0;<br> };<br> class TimeA :public TimeBasic{<br> public :<br>     TimeA(){<br>     cout&lt;&lt;”TimeA 构造”&lt;&lt;endl;<br>     }<br>     void operatora(){<br>       cout&lt;&lt;”operatora A  A!!”&lt;&lt;endl;<br>       }<br>};<br>class TimeB :public TimeBasic{<br> public :<br>     TimeB(){<br>     cout&lt;&lt;”TimeB 构造”&lt;&lt;endl;<br>     }<br>     void operatora(){<br>       cout&lt;&lt;”operatora B  B!!”&lt;&lt;endl;<br>       }<br>};<br>class AbstructBasic {<br>    protected:<br>        TimeBasic * TB;<br>    public :<br>        virtual void operatora(){<br>           TB-&gt;operatora();<br>        };<br>    };</p>
+<p> class AbstructA :public AbstructBasic{<br>   public:<br>       AbstructA(TimeBasic <em>t){<br>         TB=t;<br>         cout&lt;&lt;”AbstructA 构造”&lt;&lt;endl;<br>        }<br> };<br> class AbstructB :public AbstructBasic{<br>     public:<br>       AbstructB(TimeBasic </em>t){<br>            TB=t;<br>            cout &lt;&lt;”AbstructB 构造”&lt;&lt;endl;<br>       }</p>
+<p> };</p>
+<p>int main()<br>{<br>    //创建一个TimeA对象，指针ta指向该对象<br>    /<em><br>    创建一个AbstructB对象，并让AbstructBasci基类指针指向他<br>    创建AbstructB对象时，构造函数把ta赋值给TimeBasic指针TB，<br>    AB调用operatora方法，AbstructBasic的operatora方法又调用<br>    TB所指向的对象的operatora方法
+    </em>/<br>    TimeA <em>ta=new TimeA();<br>    AbstructBasic </em>AB=new AbstructB(ta);<br>    AB-&gt;operatora();<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/22/桥接模式/" data-id="cjgaxear90003zguit7lqis3o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/20/模板模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">模板模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/桥接模式/">桥接模式</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/20/模板模式/">模板模式</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/ArrayList源码分析/">ArrayList源码分析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/06/HashMap源码部分分析/">HashMap分析</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/31/sfdsa/">sfdsa</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
